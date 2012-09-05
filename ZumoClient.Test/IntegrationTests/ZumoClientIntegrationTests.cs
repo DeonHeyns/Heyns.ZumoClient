@@ -3,10 +3,10 @@
 using Heyns.ZumoClient;
 using ZumoClient.Test.TestEntity;
 
-namespace ZumoClient.Test
+namespace ZumoClient.Test.IntegrationTests
 {
     [TestClass]
-    public class ZumoClientTests
+    public class ZumoClientIntegrationTests
     {
         private static Item _item;
         private static Client _client;

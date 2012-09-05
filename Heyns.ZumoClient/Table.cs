@@ -10,14 +10,19 @@ namespace Heyns.ZumoClient
     /// Wraps all operations in a fluent style Api
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Table<T>
-                where T : new()
+    public class Table<T> : IMobileServicesTable<T> where T : new()
     {
         private readonly IRestClient _httpClient;
-        public Table(IRestClient httpClient)
+        public Table(string mobileServicesUri, string apiKey)
         {
-            if (httpClient == null) throw new ArgumentNullException("httpClient");
-            _httpClient = httpClient;
+            if (mobileServicesUri == null)
+                throw new ArgumentNullException("mobileServicesUri");
+            if (string.IsNullOrWhiteSpace(apiKey))
+                throw new ArgumentNullException("apiKey");
+
+            this._httpClient = new RestClient(mobileServicesUri);
+            _httpClient.AddDefaultHeader("X-ZUMO-APPLICATION", apiKey);
+            _httpClient.AddDefaultHeader("Accept", "application/json");
         }
 
         /// <summary>
