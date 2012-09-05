@@ -31,7 +31,6 @@ namespace Heyns.ZumoClient
         /// The main entry point into the Api that allows for fluent style calls
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
         public Table<T> GetTable<T>()
             where T : new()
         {

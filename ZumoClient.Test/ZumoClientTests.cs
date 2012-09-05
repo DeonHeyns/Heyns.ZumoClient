@@ -17,7 +17,7 @@ namespace ZumoClient.Test
             if(_item == null)
                 _item = new Item { Text = "Just some random text" };
             if (_client == null)
-                _client = new Client(string.Empty, string.Empty);
+                _client = new Client(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
         }
 
 

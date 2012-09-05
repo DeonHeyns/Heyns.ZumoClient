@@ -31,6 +31,8 @@ namespace Heyns.ZumoClient
             var request = new RestRequest(string.Format("{0}/{1}", ConstructTableUri(), id), Method.GET) 
             { RequestFormat = DataFormat.Json }; 
             var response = _httpClient.Execute<T>(request);
+            if (response.StatusCode != HttpStatusCode.OK)
+                throw new ZumoException(response.StatusDescription, response.StatusCode);
             return response.Data;
         }
 
