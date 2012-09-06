@@ -5,7 +5,7 @@ namespace Heyns.ZumoClient
     /// <summary>
     /// The Client used to interact with the Windows Azure MobileServices Api
     /// </summary>
-    public class Client
+    public class MobileServicesClient
     {
         private readonly string _mobileServicesUri;
         private readonly string _apiKey;
@@ -15,7 +15,7 @@ namespace Heyns.ZumoClient
         /// </summary>
         /// <param name="mobileServicesUri"></param>
         /// <param name="apiKey"></param>
-        public Client(string mobileServicesUri, string apiKey)
+        public MobileServicesClient(string mobileServicesUri, string apiKey)
         {
             if (mobileServicesUri == null) 
                 throw new ArgumentNullException("mobileServicesUri");

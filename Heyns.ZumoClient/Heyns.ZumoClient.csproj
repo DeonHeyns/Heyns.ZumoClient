@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
+    <Compile Include="MobileServicesClient.cs" />
     <Compile Include="Interfaces\IMobileServicesTable.cs" />
     <Compile Include="Interfaces\IMobileServicesTableQuery.cs" />
     <Compile Include="Serializers\JsonSerializer.cs" />
