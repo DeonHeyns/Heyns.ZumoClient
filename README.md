@@ -19,6 +19,9 @@ I have found that sending a POST or PATCH and including the ID/Key for the objec
 That seems to sort the problem as I have set Json.Net to ignore null fields.
 
 #How to use it
+
+* Clone the repository or download the source from GitHub. Or just install from [NuGet](https://nuget.org/packages/Heyns.ZumoClient).
+
 ##Crud operations
 
 	public class Awesomeness
