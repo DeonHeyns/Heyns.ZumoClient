@@ -13,7 +13,8 @@ namespace Heyns.ZumoClient
     public class Table<T> : IMobileServicesTable<T> where T : new()
     {
         private readonly IRestClient _httpClient;
-        public Table(string mobileServicesUri, string apiKey)
+
+        internal Table(string mobileServicesUri, string apiKey)
         {
             if (mobileServicesUri == null)
                 throw new ArgumentNullException("mobileServicesUri");
@@ -55,6 +56,19 @@ namespace Heyns.ZumoClient
             return response.Data;
         }
 
+        /// <summary>
+        /// Internal method used to execute OData styled queries against the data store
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        internal IEnumerable<T> Get(string query)
+        {
+            var request = new RestRequest(string.Format("{0}?{1}",ConstructTableUri(), query), Method.GET) { RequestFormat = DataFormat.Json };
+            var response = _httpClient.Execute<List<T>>(request);
+            if (response.StatusCode != HttpStatusCode.OK)
+                throw new ZumoException(response.StatusDescription, response.StatusCode);
+            return response.Data;
+        }
 
         /// <summary>
         /// Will insert the item into the Windows Azure MobileServices table for this entity

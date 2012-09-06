@@ -35,5 +35,17 @@ namespace Heyns.ZumoClient
         {
             return new Table<T>(_mobileServicesUri, _apiKey);
         }
+
+        /// <summary>
+        /// Allows for the data store to be queried using Filer, Top, Skip, Orderby and Select
+        /// Call the execute method to execute the query against the data store
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public IMobileServicesTableQuery<T> QueryTable<T>()
+            where T : new()
+        {
+            return new TableQuery<T>(_mobileServicesUri, _apiKey);
+        }
     }
 }

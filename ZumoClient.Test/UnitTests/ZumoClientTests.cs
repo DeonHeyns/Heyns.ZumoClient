@@ -20,7 +20,7 @@ namespace ZumoClient.Test.UnitTests
 
             // Act
             item = _mock.Object.Insert(new Item { Id = 1, Text = "Random Text" });
-
+            
             // Assert
             Assert.IsNotNull(item);
         }
