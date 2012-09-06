@@ -36,7 +36,7 @@ That seems to sort the problem as I have set Json.Net to ignore null fields.
 		var item = table.Insert(new Item { Text = "Random Text"});
 		
 		// update
-		var item = table.Insert(1, new Item { Text = "More Random Text"});
+		var item = table.Update(1, new Item { Text = "More Random Text"});
 		
 		// delete
 		table.Delete(1);
