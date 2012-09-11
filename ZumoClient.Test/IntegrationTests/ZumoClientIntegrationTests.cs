@@ -21,7 +21,7 @@ namespace ZumoClient.Test.IntegrationTests
                 if (_item == null)
                     _item = new Item {Text = "Just some random text"};
                 if (_client == null)
-                    _client = new MobileServicesClient(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
+                    _client = new MobileServicesClient("https://deezos.azure-mobile.net/", "dxWYhgjhlaXvwfbJoungMLjHbOITjs64");
             }
 
             [TestMethod]
@@ -99,28 +99,28 @@ namespace ZumoClient.Test.IntegrationTests
             public void Setup()
             {
                 if (_item == null)
-                    _item = new Item { Text = "Just some random text" };
+                    _item = new Item { Text = "Just some text used to test querying" };
                 if (_client == null)
-                    _client = new MobileServicesClient(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
-                _item = _client.GetTable<Item>().Insert(_item);
+                    _client = new MobileServicesClient("https://deezos.azure-mobile.net/", "dxWYhgjhlaXvwfbJoungMLjHbOITjs64");
             }
 
             [TestCleanup]
             public void CleanUp()
             {
-                _client.GetTable<Item>().Delete(_item.Id);
             }
 
             [TestMethod]
             public void Filter_Brings_Back_Only_Item_With_Text_Filtered_On()
             {
                 // Arrange
+                _item = _client.GetTable<Item>().Insert(_item);
                 var expected = _item;
                 // Act
                 var actual = _client.QueryTable<Item>().Filter(string.Format("text eq '{0}'", _item.Text)).ExecuteQuery().First();
 
                 // Assert
                 Assert.AreEqual(actual, expected);
+                _client.GetTable<Item>().Delete(_item.Id);
             }
 
             [TestMethod]
@@ -148,6 +148,7 @@ namespace ZumoClient.Test.IntegrationTests
                 Assert.AreNotEqual(first, second);
                 Assert.AreEqual(first.Count(), 10);
                 Assert.AreEqual(second.Count(), 10);
+
             }
 
             [TestMethod]

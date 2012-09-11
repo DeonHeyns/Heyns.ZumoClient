@@ -1,4 +1,5 @@
 ﻿using System;
+using RestSharp;
 
 namespace Heyns.ZumoClient
 {
@@ -9,7 +10,8 @@ namespace Heyns.ZumoClient
     {
         private readonly string _mobileServicesUri;
         private readonly string _apiKey;
-
+        private readonly IRestClient _httpClient;
+        
         /// <summary>
         /// The constructor that requires the base Windows Azure endpoint for MobileServices and the Api Key 
         /// </summary>
@@ -24,8 +26,12 @@ namespace Heyns.ZumoClient
 
             _mobileServicesUri = mobileServicesUri;
             _apiKey = apiKey;
-        }
 
+            _httpClient = new RestClient(mobileServicesUri);
+            _httpClient.AddDefaultHeader("X-ZUMO-APPLICATION", apiKey);
+            _httpClient.AddDefaultHeader("Accept", "application/json");
+        }
+        
         /// <summary>
         /// The main entry point into the Api that allows for fluent style calls
         /// </summary>
@@ -33,7 +39,7 @@ namespace Heyns.ZumoClient
         public IMobileServicesTable<T> GetTable<T>()
             where T : new()
         {
-            return new Table<T>(_mobileServicesUri, _apiKey);
+            return new Table<T>(_httpClient);
         }
 
         /// <summary>
@@ -45,7 +51,7 @@ namespace Heyns.ZumoClient
         public IMobileServicesTableQuery<T> QueryTable<T>()
             where T : new()
         {
-            return new TableQuery<T>(_mobileServicesUri, _apiKey);
+            return new TableQuery<T>(_httpClient);
         }
     }
 }

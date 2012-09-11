@@ -14,16 +14,12 @@ namespace Heyns.ZumoClient
     {
         private readonly IRestClient _httpClient;
 
-        internal Table(string mobileServicesUri, string apiKey)
+        internal Table(IRestClient httpClient)
         {
-            if (mobileServicesUri == null)
-                throw new ArgumentNullException("mobileServicesUri");
-            if (string.IsNullOrWhiteSpace(apiKey))
-                throw new ArgumentNullException("apiKey");
-
-            this._httpClient = new RestClient(mobileServicesUri);
-            _httpClient.AddDefaultHeader("X-ZUMO-APPLICATION", apiKey);
-            _httpClient.AddDefaultHeader("Accept", "application/json");
+            if (httpClient == null) 
+                throw new ArgumentNullException("httpClient");
+            
+            _httpClient = httpClient;
         }
 
         /// <summary>

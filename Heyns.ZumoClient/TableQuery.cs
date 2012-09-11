@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
+using RestSharp;
 
 namespace Heyns.ZumoClient
 {
@@ -9,11 +12,16 @@ namespace Heyns.ZumoClient
         private string _orderby;
         private string _filter;
         private string _select;
-        private readonly Table<T> _table; 
+        private readonly Table<T> _table;
+        private readonly IRestClient _httpClient;
 
-        internal TableQuery(string mobileServicesUri, string apiKey)
+        internal TableQuery(IRestClient httpClient)
         {
-            this._table = new Table<T>(mobileServicesUri, apiKey);
+            if (httpClient == null) 
+                throw new ArgumentNullException("httpClient");
+            _httpClient = httpClient;
+
+            _table = new Table<T>(_httpClient);
         }
 
         public IEnumerable<T> ExecuteQuery()
