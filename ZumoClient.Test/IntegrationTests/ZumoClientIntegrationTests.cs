@@ -21,7 +21,7 @@ namespace ZumoClient.Test.IntegrationTests
                 if (_item == null)
                     _item = new Item {Text = "Just some random text"};
                 if (_client == null)
-                    _client = new MobileServicesClient("https://deezos.azure-mobile.net/", "dxWYhgjhlaXvwfbJoungMLjHbOITjs64");
+                    _client = new MobileServicesClient(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
             }
 
             [TestMethod]
@@ -101,7 +101,7 @@ namespace ZumoClient.Test.IntegrationTests
                 if (_item == null)
                     _item = new Item { Text = "Just some text used to test querying" };
                 if (_client == null)
-                    _client = new MobileServicesClient("https://deezos.azure-mobile.net/", "dxWYhgjhlaXvwfbJoungMLjHbOITjs64");
+                    _client = new MobileServicesClient(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
             }
 
             [TestCleanup]
