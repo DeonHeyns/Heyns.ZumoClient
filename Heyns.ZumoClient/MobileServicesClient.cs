@@ -56,7 +56,7 @@ namespace Heyns.ZumoClient
         }
 
         /// <summary>
-        /// Allows for the data store to be queried using Filer, Top, Skip, Orderby and Select
+        /// Allows for the data store to be queried using Filter, Top, Skip, Orderby and Select
         /// Call the execute method to execute the query against the data store
         /// </summary>
         /// <typeparam name="T"></typeparam>
