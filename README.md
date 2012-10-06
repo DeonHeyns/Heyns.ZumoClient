@@ -59,6 +59,14 @@ That seems to sort the problem as I have set Json.Net to ignore null fields.
                         .Select("text")
                         .ExecuteQuery();
 	}
+	
+#How to get hold of me
+twitter: [@DeonHeyns](https://twitter.com/deonheyns)
+
+website: [deonheyns.com](http://deonheyns.com/contact)
+
+GitHub: [GitHub Profile](https://github.com/deonheyns)
+
 #Open source projects used:
 
 RestSharp: https://github.com/restsharp
