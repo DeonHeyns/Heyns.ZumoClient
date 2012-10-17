@@ -132,7 +132,7 @@ namespace Heyns.ZumoClient
         private static void ConstructPayload(T entity, IRestRequest request)
         {
             request.JsonSerializer = new ZumoClient.JsonSerializer();
-            request.AddParameter(typeof(T).Name,request.JsonSerializer.Serialize(entity), ParameterType.RequestBody);
+            request.AddParameter("",request.JsonSerializer.Serialize(entity), ParameterType.RequestBody);
         }
 
         private IRestResponse<T> InsertUpdate(IRestRequest request, T entity)

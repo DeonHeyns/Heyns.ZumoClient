@@ -12,7 +12,9 @@
 //    limitations under the License.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 using RestSharp;
 
@@ -30,7 +32,7 @@ namespace Heyns.ZumoClient
 
         internal TableQuery(IRestClient httpClient)
         {
-            if (httpClient == null) 
+            if (httpClient == null)
                 throw new ArgumentNullException("httpClient");
             _httpClient = httpClient;
 
@@ -72,12 +74,12 @@ namespace Heyns.ZumoClient
             this._select = select;
             return this;
         }
-        
+
         public override string ToString()
         {
             // stop Array.Copy after 3 items
             var query = new List<string>(5);
-            if(_top > 0)
+            if (_top > 0)
             {
                 query.Add("$top=" + _top);
             }

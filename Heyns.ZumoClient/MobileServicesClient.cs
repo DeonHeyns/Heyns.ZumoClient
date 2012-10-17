@@ -12,6 +12,8 @@
 //    limitations under the License.
 
 using System;
+using System.Globalization;
+using System.Net;
 using RestSharp;
 
 namespace Heyns.ZumoClient
@@ -19,12 +21,13 @@ namespace Heyns.ZumoClient
     /// <summary>
     /// The Client used to interact with the Windows Azure MobileServices Api
     /// </summary>
-    public class MobileServicesClient
+    public sealed class MobileServicesClient
     {
         private readonly string _mobileServicesUri;
         private readonly string _apiKey;
         private readonly IRestClient _httpClient;
-        
+        private const string LoginUrl = "login?mode=authenticationToken";
+
         /// <summary>
         /// The constructor that requires the base Windows Azure endpoint for MobileServices and the Api Key 
         /// </summary>
@@ -45,6 +48,30 @@ namespace Heyns.ZumoClient
             _httpClient.AddDefaultHeader("Accept", "application/json");
         }
         
+        /// <summary>
+        /// Authenticate this user against MobileServices
+        /// </summary>
+        /// <param name="authenticationToken"></param>
+        /// <returns>MobileServicesUser</returns>
+        internal MobileServicesUser Authenticate(string authenticationToken)
+        {
+            if(authenticationToken == null)
+                throw  new ArgumentNullException(authenticationToken);
+            if(string.IsNullOrWhiteSpace(authenticationToken))
+                throw   new ArgumentException(string.Format(CultureInfo.InvariantCulture, "The authenticationToken can not be null or empty"));
+
+            var url = string.Concat(_mobileServicesUri, LoginUrl);
+
+            var request = new RestRequest(url, Method.POST);
+            request.AddParameter("authenticationToken", authenticationToken);
+            var response = _httpClient.Execute<dynamic>(request);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                throw new ZumoException(response.StatusDescription, response.StatusCode);
+            
+            return new MobileServicesUser(response.Data.user.userid);
+        }
+
         /// <summary>
         /// The main entry point into the Api that allows for fluent style calls
         /// </summary>

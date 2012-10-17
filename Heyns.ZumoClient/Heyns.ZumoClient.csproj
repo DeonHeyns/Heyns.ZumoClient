@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -44,6 +45,7 @@
     <Compile Include="MobileServicesClient.cs" />
     <Compile Include="Interfaces\IMobileServicesTable.cs" />
     <Compile Include="Interfaces\IMobileServicesTableQuery.cs" />
+    <Compile Include="MobileServicesUser.cs" />
     <Compile Include="Serializers\JsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableQuery.cs" />
