@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Net;
 
 using RestSharp;
+using Newtonsoft.Json.Linq;
 
 namespace Heyns.ZumoClient
 {
@@ -26,13 +27,14 @@ namespace Heyns.ZumoClient
     public class Table<T> : IMobileServicesTable<T> where T : new()
     {
         private readonly IRestClient _httpClient;
-
+        private readonly string _typeName;
         internal Table(IRestClient httpClient)
         {
             if (httpClient == null) 
                 throw new ArgumentNullException("httpClient");
             
             _httpClient = httpClient;
+            _typeName = typeof (T).Name;
         }
 
         /// <summary>
@@ -87,7 +89,7 @@ namespace Heyns.ZumoClient
         public T Insert(T entity)
         {
             var request = new RestRequest(ConstructTableUri(), Method.POST) { RequestFormat = DataFormat.Json };
-            var response = InsertUpdate(request, entity);
+            var response = InsertOrUpdate(entity, request, true);
             if (response.StatusCode != HttpStatusCode.Created)
                 throw new ZumoException(response.StatusDescription, response.StatusCode);
             return response.Data;
@@ -103,7 +105,7 @@ namespace Heyns.ZumoClient
         public T Update<TKey>(TKey id, T entity)
         {
             var request = new RestRequest(string.Format("{0}/{1}", ConstructTableUri(), id), Method.PATCH) { RequestFormat = DataFormat.Json };
-            var response = InsertUpdate(request, entity);
+            var response = InsertOrUpdate(entity, request);
             if (response.StatusCode != HttpStatusCode.OK)
                 throw new ZumoException(response.StatusDescription, response.StatusCode);
             return entity;
@@ -124,20 +126,26 @@ namespace Heyns.ZumoClient
 
         }
 
-        private static string ConstructTableUri()
+        private string ConstructTableUri()
         {
-            return string.Format("tables/{0}", typeof (T).Name);
+            return string.Format("tables/{0}", _typeName);
         }
 
-        private static void ConstructPayload(T entity, IRestRequest request)
+        private string ConstructPayload(T entity, bool removeIdKeyProperty = false)
         {
-            request.JsonSerializer = new ZumoClient.JsonSerializer();
-            request.AddParameter("",request.JsonSerializer.Serialize(entity), ParameterType.RequestBody);
+            var json = JObject.FromObject(entity);
+            json["id"] = json["Id"];
+            json.Remove("Id");
+            if (removeIdKeyProperty)
+                json.Remove("id");
+            
+            return json.ToString();
         }
 
-        private IRestResponse<T> InsertUpdate(IRestRequest request, T entity)
+        private IRestResponse<T> InsertOrUpdate(T entity, IRestRequest request, bool insert = false)
         {
-            ConstructPayload(entity, request);
+            var data = ConstructPayload(entity, insert);
+            request.AddParameter(string.Empty, data, ParameterType.RequestBody);
             var response = _httpClient.Execute<T>(request);
             return response;
         }

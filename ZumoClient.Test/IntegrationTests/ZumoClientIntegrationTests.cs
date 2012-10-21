@@ -64,10 +64,10 @@ namespace ZumoClient.Test.IntegrationTests
             {
                 // Arrange
                 _item.Text = "Just something else";
+                _item = _client.GetTable<Item>().Insert(_item);
                 // This just doesn't seem right but you need to set the Id to null
                 // or ignore it when serializing to Json
                 var id = _item.Id;
-                _item.Id = null;
                 // Act
                 var actual = _client.GetTable<Item>().Update(id, _item);
 
@@ -81,7 +81,11 @@ namespace ZumoClient.Test.IntegrationTests
             public void Delete_Some_Random_Item_Into_Zumo()
             {
                 // Arrange
-
+                if (_item.Id == null)
+                {
+                    _item.Text = "Just something else";
+                    _item = _client.GetTable<Item>().Insert(_item);
+                }
                 // Act
                 _client.GetTable<Item>().Delete(_item.Id);
 

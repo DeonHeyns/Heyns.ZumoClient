@@ -46,6 +46,7 @@ namespace Heyns.ZumoClient
             _httpClient = new RestClient(mobileServicesUri);
             _httpClient.AddDefaultHeader("X-ZUMO-APPLICATION", apiKey);
             _httpClient.AddDefaultHeader("Accept", "application/json");
+            _httpClient.AddDefaultHeader("Content-Type","application/json");
         }
         
         /// <summary>
