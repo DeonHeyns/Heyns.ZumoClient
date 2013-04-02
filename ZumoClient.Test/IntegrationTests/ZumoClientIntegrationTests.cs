@@ -5,8 +5,7 @@ using Heyns.ZumoClient;
 using ZumoClient.Test.TestEntity;
 
 namespace ZumoClient.Test.IntegrationTests
-{
-    
+{   
     public class ZumoClientIntegrationTests
     {
         [TestClass]
@@ -22,6 +21,7 @@ namespace ZumoClient.Test.IntegrationTests
                     _item = new Item {Text = "Just some random text"};
                 if (_client == null)
                     _client = new MobileServicesClient(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
+
             }
 
             [TestMethod]
@@ -120,7 +120,7 @@ namespace ZumoClient.Test.IntegrationTests
                 _item = _client.GetTable<Item>().Insert(_item);
                 var expected = _item;
                 // Act
-                var actual = _client.QueryTable<Item>().Filter(string.Format("text eq '{0}'", _item.Text)).ExecuteQuery().First();
+                var actual = _client.QueryTable<Item>().Filter(string.Format("text eq '{0}'", _item.Text)).First();
 
                 // Assert
                 Assert.AreEqual(actual, expected);
@@ -133,7 +133,7 @@ namespace ZumoClient.Test.IntegrationTests
                 // Arrange
 
                 // Act
-                var actual = _client.QueryTable<Item>().Top(10).ExecuteQuery();
+                var actual = _client.QueryTable<Item>().Top(10);
 
                 // Assert
                 Assert.AreEqual(actual.Count(), 10);
@@ -143,10 +143,10 @@ namespace ZumoClient.Test.IntegrationTests
             public void Skip_10_Will_Bring_Back_Next_10_Records()
             {
                 // Arrange
-                var first = _client.QueryTable<Item>().Top(10).ExecuteQuery();
+                var first = _client.QueryTable<Item>().Top(10);
                 
                 // Act
-                var second = _client.QueryTable<Item>().Skip(10).Top(10).ExecuteQuery();
+                var second = _client.QueryTable<Item>().Skip(10).Top(10);
                 
                 // Assert
                 Assert.AreNotEqual(first, second);
@@ -161,7 +161,7 @@ namespace ZumoClient.Test.IntegrationTests
                 // Arrange
 
                 // Act
-                var items = _client.QueryTable<Item>().Top(2).OrderBy("id").ExecuteQuery();
+                var items = _client.QueryTable<Item>().Top(2).OrderBy("id");
                 var firstItem = items.First();
                 var secondItem = items.Skip(1).First();
                 // Assert
@@ -174,7 +174,7 @@ namespace ZumoClient.Test.IntegrationTests
                 // Arrange
 
                 // Act
-                var actual = _client.QueryTable<Item>().Top(1).Select("text").ExecuteQuery().First();
+                var actual = _client.QueryTable<Item>().Top(1).Select("text").First();
 
                 // Assert
                 Assert.IsNull(actual.Id);

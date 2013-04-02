@@ -15,14 +15,9 @@ using System.Collections.Generic;
 
 namespace Heyns.ZumoClient
 {
-    public interface IMobileServicesTableQuery<T> where T : new()
+    public interface IMobileServicesTableQuery<T> : IEnumerable<T>
+        where T : new()
     {
-        /// <summary>
-        /// Executes the commands against the data store this allows the stringing of commands
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<T> ExecuteQuery();
-
         /// <summary>
         /// Take the top number of records
         /// </summary>

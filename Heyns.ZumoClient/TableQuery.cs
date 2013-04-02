@@ -14,7 +14,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 using RestSharp;
 
@@ -37,12 +36,6 @@ namespace Heyns.ZumoClient
             _httpClient = httpClient;
 
             _table = new Table<T>(_httpClient);
-        }
-
-        public IEnumerable<T> ExecuteQuery()
-        {
-            var query = this.ToString();
-            return !string.IsNullOrWhiteSpace(query) ? _table.Get(query) : null;
         }
 
         public IMobileServicesTableQuery<T> Top(int top)
@@ -101,6 +94,18 @@ namespace Heyns.ZumoClient
             }
 
             return query.Count > 0 ? string.Join("&", query) : null;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var query = this.ToString();
+            return _table.Get(query).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            var query = this.ToString();
+            return _table.Get(query).GetEnumerator();
         }
     }
 }
