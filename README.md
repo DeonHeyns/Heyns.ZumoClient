@@ -2,6 +2,8 @@ Heyns Zumo Client
 ===================================
 #Azure Mobile Services (a.k.a. ZUMO) 
 
+[![Build Status](http://hookify.cloudapp.net:8080/job/Heyns%20ZumoClient/badge/icon)](http://hookify.cloudapp.net:8080/job/Heyns%20ZumoClient/)
+
 Scott Gu says:
 
 "Windows Azure Mobile Services makes it incredibly easy to connect a scalable cloud backend to your client and mobile applications.  
