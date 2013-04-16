@@ -2,7 +2,7 @@ Heyns Zumo Client
 ===================================
 #Azure Mobile Services (a.k.a. ZUMO) 
 
-[![Build Status](http://hookify.cloudapp.net:8080/job/Heyns%20ZumoClient/badge/icon)](http://hookify.cloudapp.net:8080/job/Heyns%20ZumoClient/)
+[![Build Status](http://hookify.cloudapp.net:8080/job/Heyns%20ZumoClient/badge/icon)](/)
 
 Scott Gu says:
 
