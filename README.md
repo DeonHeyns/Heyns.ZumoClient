@@ -1,6 +1,6 @@
 Heyns Zumo Client
 ===================================
-#Azure Mobile Services (a.k.a. ZUMO) 
+#Azure Mobile Services (a.k.a. ZUMO)
 
 [![Build Status](http://hookify.cloudapp.net:8080/job/Heyns%20ZumoClient/badge/icon)](/)
 
@@ -10,7 +10,7 @@ Scott Gu says:
 It allows you to easily store structured data in the cloud that can span both devices and users, integrate it with user authentication, as well as send out updates to clients via push notifications."
 
 However at the moment there is only a SDK for Windows 8 applications. This SDK just wraps the REST services exposed by Azure Mobile Services.
-This also means that at the moment there is no SDK for .NET 4. So I created this library to fill that gap. It's pre-alpha so use it and change it as you see fit (fork it go mad). 
+This also means that at the moment there is no SDK for .NET 4. So I created this library to fill that gap. It's pre-alpha so use it and change it as you see fit (fork it go mad).
 
 Be kind and send pull requests for any changes you make (if you don't a penguin will die somewhere in the world).
 
