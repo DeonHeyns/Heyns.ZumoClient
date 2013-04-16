@@ -1,17 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using Heyns.ZumoClient;
+﻿using Heyns.ZumoClient;
 using Moq;
+using NUnit.Framework;
 using ZumoClient.Test.TestEntity;
 
 namespace ZumoClient.Test.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class ZumoClientTests
     {
         private static readonly Mock<IMobileServicesTable<Item>> _mock = new Mock<IMobileServicesTable<Item>>();
-        
-        [TestMethod]
+      
+        [Test]
         public void Insert_Some_Random_Item_Into_Zumo()
         {
             // Arrange 
@@ -25,7 +24,7 @@ namespace ZumoClient.Test.UnitTests
             Assert.IsNotNull(item);
         }
 
-        [TestMethod]
+        [Test]
         public void Get_All_Items_From_Zumo()
         {
             // Arrange
@@ -42,7 +41,7 @@ namespace ZumoClient.Test.UnitTests
             Assert.IsNotNull(retrievedItems);
         }
 
-        [TestMethod]
+        [Test]
         public void Get_Some_Random_Item_From_Zumo()
         {
             // Arrange
@@ -56,7 +55,7 @@ namespace ZumoClient.Test.UnitTests
             Assert.IsNotNull(item);
         }
 
-        [TestMethod]
+        [Test]
         public void Update_Some_Random_Item_Into_Zumo()
         {
             // Arrange
@@ -77,7 +76,7 @@ namespace ZumoClient.Test.UnitTests
             Assert.AreEqual(item.Text, actual.Text);
         }
 
-        [TestMethod]
+        [Test]
         public void Delete_Some_Random_Item_Into_Zumo()
         {
             // Arrange

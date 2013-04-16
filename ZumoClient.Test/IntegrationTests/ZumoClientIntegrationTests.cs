@@ -1,20 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
+﻿using System.Linq;
 
 using Heyns.ZumoClient;
+using NUnit.Framework;
 using ZumoClient.Test.TestEntity;
 
 namespace ZumoClient.Test.IntegrationTests
 {   
     public class ZumoClientIntegrationTests
     {
-        [TestClass]
+        [TestFixture]
         public class TableTests
         {
             private static Item _item;
             private static MobileServicesClient _client;
 
-            [TestInitialize]
+            [TestFixtureSetUp]
             public void Setup()
             {
                 if (_item == null)
@@ -24,7 +24,7 @@ namespace ZumoClient.Test.IntegrationTests
 
             }
 
-            [TestMethod]
+            [Test]
             public void Insert_Some_Random_Item_Into_Zumo()
             {
                 // Arrange 
@@ -35,7 +35,7 @@ namespace ZumoClient.Test.IntegrationTests
 
             }
 
-            [TestMethod]
+            [Test]
             public void Get_All_Items_From_Zumo()
             {
                 // Arrange
@@ -47,7 +47,7 @@ namespace ZumoClient.Test.IntegrationTests
                 Assert.IsNotNull(items);
             }
 
-            [TestMethod]
+            [Test]
             public void Get_Some_Random_Item_From_Zumo()
             {
                 // Arrange
@@ -59,7 +59,7 @@ namespace ZumoClient.Test.IntegrationTests
                 Assert.IsNotNull(item);
             }
 
-            [TestMethod]
+            [Test]
             public void Update_Some_Random_Item_Into_Zumo()
             {
                 // Arrange
@@ -77,7 +77,7 @@ namespace ZumoClient.Test.IntegrationTests
                 _item.Id = id;
             }
 
-            [TestMethod]
+            [Test]
             public void Delete_Some_Random_Item_Into_Zumo()
             {
                 // Arrange
@@ -93,13 +93,13 @@ namespace ZumoClient.Test.IntegrationTests
             }
         }
 
-        [TestClass]
+        [TestFixture]
         public class TableQueryTests
         {
             private static Item _item;
             private static MobileServicesClient _client;
 
-            [TestInitialize]
+            [TestFixtureSetUp]
             public void Setup()
             {
                 if (_item == null)
@@ -108,12 +108,8 @@ namespace ZumoClient.Test.IntegrationTests
                     _client = new MobileServicesClient(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
             }
 
-            [TestCleanup]
-            public void CleanUp()
-            {
-            }
-
-            [TestMethod]
+            
+            [Test]
             public void Filter_Brings_Back_Only_Item_With_Text_Filtered_On()
             {
                 // Arrange
@@ -127,7 +123,7 @@ namespace ZumoClient.Test.IntegrationTests
                 _client.GetTable<Item>().Delete(_item.Id);
             }
 
-            [TestMethod]
+            [Test]
             public void Top_10_Brings_Back_Only_10_Items_From_The_Service()
             {
                 // Arrange
@@ -139,7 +135,7 @@ namespace ZumoClient.Test.IntegrationTests
                 Assert.AreEqual(actual.Count(), 10);
             }
 
-            [TestMethod]
+            [Test]
             public void Skip_10_Will_Bring_Back_Next_10_Records()
             {
                 // Arrange
@@ -155,7 +151,7 @@ namespace ZumoClient.Test.IntegrationTests
 
             }
 
-            [TestMethod]
+            [Test]
             public void OrderBy_Will_Order_Items_Accordingly()
             {
                 // Arrange
@@ -168,7 +164,7 @@ namespace ZumoClient.Test.IntegrationTests
                 Assert.IsTrue(firstItem.Id < secondItem.Id);
             }
 
-            [TestMethod]
+            [Test]
             public void Select_Will_Project_Return_On_Projected_Values()
             {
                 // Arrange
