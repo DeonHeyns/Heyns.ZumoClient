@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZumoClient.Test", "ZumoClient.Test\ZumoClient.Test.csproj", "{2554C94F-6E66-4EC6-ADA3-A51F47567923}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heyns.ZumoClient", "Heyns.ZumoClient\Heyns.ZumoClient.csproj", "{41CB65EC-55E8-4B09-A52A-988A91881807}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{764B8ED5-643A-4458-8ED2-7EE361AAE924}"
@@ -12,20 +10,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{764B8E
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZumoClient.IntegrationTests", "ZumoClient.IntegrationTests\ZumoClient.IntegrationTests.csproj", "{C96D9C74-860E-47B3-AE62-D12F669711AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZumoClient.Tests", "ZumoClient.Tests\ZumoClient.Tests.csproj", "{7E897B91-B43F-4A8B-97A8-6E5EC1F2CF48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2554C94F-6E66-4EC6-ADA3-A51F47567923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2554C94F-6E66-4EC6-ADA3-A51F47567923}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2554C94F-6E66-4EC6-ADA3-A51F47567923}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2554C94F-6E66-4EC6-ADA3-A51F47567923}.Release|Any CPU.Build.0 = Release|Any CPU
 		{41CB65EC-55E8-4B09-A52A-988A91881807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{41CB65EC-55E8-4B09-A52A-988A91881807}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41CB65EC-55E8-4B09-A52A-988A91881807}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41CB65EC-55E8-4B09-A52A-988A91881807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C96D9C74-860E-47B3-AE62-D12F669711AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C96D9C74-860E-47B3-AE62-D12F669711AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C96D9C74-860E-47B3-AE62-D12F669711AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C96D9C74-860E-47B3-AE62-D12F669711AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E897B91-B43F-4A8B-97A8-6E5EC1F2CF48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E897B91-B43F-4A8B-97A8-6E5EC1F2CF48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E897B91-B43F-4A8B-97A8-6E5EC1F2CF48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E897B91-B43F-4A8B-97A8-6E5EC1F2CF48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

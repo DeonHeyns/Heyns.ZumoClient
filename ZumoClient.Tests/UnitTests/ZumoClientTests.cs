@@ -1,24 +1,24 @@
 ﻿using Heyns.ZumoClient;
 using Moq;
 using NUnit.Framework;
-using ZumoClient.Test.TestEntity;
+using ZumoClient.Tests.TestEntity;
 
-namespace ZumoClient.Test.UnitTests
+namespace ZumoClient.Tests.UnitTests
 {
     [TestFixture]
     public class ZumoClientTests
     {
-        private static readonly Mock<IMobileServicesTable<Item>> _mock = new Mock<IMobileServicesTable<Item>>();
+        private static readonly Mock<IMobileServicesTable<Item>> Mock = new Mock<IMobileServicesTable<Item>>();
       
         [Test]
         public void Insert_Some_Random_Item_Into_Zumo()
         {
             // Arrange 
             var item = new Item {Id = 1, Text = "Random Text"};
-            _mock.Setup(m => m.Insert(item)).Returns(new Item { Id = 1, Text = "Random Text" });
+            Mock.Setup(m => m.Insert(item)).Returns(new Item { Id = 1, Text = "Random Text" });
 
             // Act
-            item = _mock.Object.Insert(new Item { Id = 1, Text = "Random Text" });
+            item = Mock.Object.Insert(new Item { Id = 1, Text = "Random Text" });
             
             // Assert
             Assert.IsNotNull(item);
@@ -32,10 +32,10 @@ namespace ZumoClient.Test.UnitTests
                 new Item { Id = 0, Text = "Random Text"}, 
                 new Item() {Id = 1, Text = "Random Text"}};
 
-            _mock.Setup(m => m.Get())
+            Mock.Setup(m => m.Get())
                 .Returns(items);
             // Act
-            var retrievedItems = _mock.Object.Get();
+            var retrievedItems = Mock.Object.Get();
 
             // Assert
             Assert.IsNotNull(retrievedItems);
@@ -46,10 +46,10 @@ namespace ZumoClient.Test.UnitTests
         {
             // Arrange
             var item = new Item { Id = 1, Text = "Random Text" };
-            _mock.Setup(m => m.Get(item.Id)).Returns(new Item { Id = 1, Text = "Random Text" });
+            Mock.Setup(m => m.Get(item.Id)).Returns(new Item { Id = 1, Text = "Random Text" });
 
             // Act
-            item = _mock.Object.Get(item.Id);
+            item = Mock.Object.Get(item.Id);
 
             // Assert
             Assert.IsNotNull(item);
@@ -64,9 +64,9 @@ namespace ZumoClient.Test.UnitTests
             // or ignore it when serializing to Json
             var id = item.Id;
             item.Id = null;
-            _mock.Setup(m => m.Update(id, item)).Returns(new Item { Id = 1, Text = "Random Text" });
+            Mock.Setup(m => m.Update(id, item)).Returns(new Item { Id = 1, Text = "Random Text" });
             // Act
-            var actual = _mock.Object.Update(id,item);
+            var actual = Mock.Object.Update(id,item);
 
             // Reset the Id back so we can delete
             item.Id = id;
@@ -81,13 +81,13 @@ namespace ZumoClient.Test.UnitTests
         {
             // Arrange
             var item = new Item { Id = 1, Text = "Random Text" };
-            _mock.Setup(m => m.Delete(item)).Verifiable();
+            Mock.Setup(m => m.Delete(item)).Verifiable();
 
             // Act
-            _mock.Object.Delete(item.Id);
+            Mock.Object.Delete(item.Id);
 
             // Assert
-            _mock.Verify(m => m.Delete(item.Id));
+            Mock.Verify(m => m.Delete(item.Id));
         }
     }
 }

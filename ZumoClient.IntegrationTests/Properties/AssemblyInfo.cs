@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ZumoClient.Test")]
-[assembly: AssemblyDescription("Wrapper around Azure Mobile Services that can be used in any .NET 4 client - Tests")]
+[assembly: AssemblyTitle("ZumoClient.IntegrationTests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Deon Heyns")]
-[assembly: AssemblyProduct("ZumoClient.Test")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ZumoClient.IntegrationTests")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("72ebb9db-e26a-4f6c-ad13-09e67ffb5bd6")]
+[assembly: Guid("05266e38-d236-4d5d-b199-6d408a0a00ce")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.6.0")]
-[assembly: AssemblyFileVersion("0.0.6.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
