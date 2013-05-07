@@ -1,5 +1,6 @@
 ﻿namespace ZumoClient.Tests.TestEntity
 {
+    // Test class used during unit and integration tests
     public class Item
     {
         public int? Id { get; set; }
