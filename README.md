@@ -25,7 +25,7 @@ There are some things that might seem perculiar and if you find a better way to 
 
 	public class Awesomeness
 	{
-		var client = new Heyns.ZumoClient.MobileServicesClient("https://[YOURS].azure-mobile.net/", "AzureApiKey");
+		var client = new Heyns.ZumoClient.MobileServiceClient("https://[YOURS].azure-mobile.net/", "AzureApiKey");
         var table = client.GetTable<Item>();
 		
 		// get all 
@@ -47,7 +47,7 @@ There are some things that might seem perculiar and if you find a better way to 
 ##Querying your table
 	public class Awesomeness
 	{
-		var client = new Heyns.ZumoClient.MobileServicesClient("https://[YOURS].azure-mobile.net/", "AzureApiKey");
+		var client = new Heyns.ZumoClient.MobileServiceClient("https://[YOURS].azure-mobile.net/", "AzureApiKey");
         var table = client.QueryTable<Item>();
 		
 		var items = table

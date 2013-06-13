@@ -21,19 +21,20 @@ namespace Heyns.ZumoClient
     /// <summary>
     /// The Client used to interact with the Windows Azure MobileServices Api
     /// </summary>
-    public sealed class MobileServicesClient
+    public sealed class MobileServiceClient : IDisposable
     {
+
         private readonly string _mobileServicesUri;
         private readonly string _apiKey;
-        private readonly IRestClient _httpClient;
+        private IRestClient _httpClient;
         private const string LoginUrl = "login?mode=authenticationToken";
-
+        private bool _disposed;
         /// <summary>
         /// The constructor that requires the base Windows Azure endpoint for MobileServices and the Api Key 
         /// </summary>
         /// <param name="mobileServicesUri"></param>
         /// <param name="apiKey"></param>
-        public MobileServicesClient(string mobileServicesUri, string apiKey)
+        public MobileServiceClient(string mobileServicesUri, string apiKey)
         {
             if (mobileServicesUri == null) 
                 throw new ArgumentNullException("mobileServicesUri");
@@ -57,7 +58,7 @@ namespace Heyns.ZumoClient
         internal MobileServicesUser Authenticate(string authenticationToken)
         {
             if(authenticationToken == null)
-                throw  new ArgumentNullException(authenticationToken);
+                throw  new ArgumentNullException("authenticationToken");
             if(string.IsNullOrWhiteSpace(authenticationToken))
                 throw   new ArgumentException(string.Format(CultureInfo.InvariantCulture, "The authenticationToken can not be null or empty"));
 
@@ -84,7 +85,7 @@ namespace Heyns.ZumoClient
         }
 
         /// <summary>
-        /// Allows for the data store to be queried using Filter, Top, Skip, Orderby and Select
+        /// Allows for the data store to be queried using Filter, Top, Skip, OrderBy and Select
         /// Call the execute method to execute the query against the data store
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -93,6 +94,24 @@ namespace Heyns.ZumoClient
             where T : new()
         {
             return new TableQuery<T>(_httpClient);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _httpClient = null;
+                }
+                _disposed = true;
+            }
         }
     }
 }

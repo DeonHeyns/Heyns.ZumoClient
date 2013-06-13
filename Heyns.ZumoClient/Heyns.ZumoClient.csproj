@@ -46,7 +46,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MobileServicesClient.cs" />
+    <Compile Include="MobileServiceClient.cs" />
     <Compile Include="Interfaces\IMobileServicesTable.cs" />
     <Compile Include="Interfaces\IMobileServicesTableQuery.cs" />
     <Compile Include="MobileServicesUser.cs" />

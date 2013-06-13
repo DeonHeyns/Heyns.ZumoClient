@@ -9,7 +9,7 @@ namespace ZumoClient.IntegrationTests
     public class TableTests
     {
         private static Item _item;
-        private static MobileServicesClient _client;
+        private static MobileServiceClient _client;
 
         [TestFixtureSetUp]
         public void Setup()
@@ -17,7 +17,7 @@ namespace ZumoClient.IntegrationTests
             if (_item == null)
                 _item = new Item {Text = "Just some random text"};
             if (_client == null)
-                _client = new MobileServicesClient(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
+                _client = new MobileServiceClient(string.Empty /* Your endpoint */, string.Empty /* Your Api key */);
         }
 
         [Test]
