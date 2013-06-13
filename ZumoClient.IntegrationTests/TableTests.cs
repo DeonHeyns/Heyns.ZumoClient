@@ -27,6 +27,7 @@ namespace ZumoClient.IntegrationTests
 
             // Act
             _item = _client.GetTable<Item>().Insert(_item);
+
             // Assert
 
         }
