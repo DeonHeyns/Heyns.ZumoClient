@@ -34,7 +34,8 @@ namespace Heyns.ZumoClient
         /// </summary>
         /// <param name="mobileServicesUri"></param>
         /// <param name="apiKey"></param>
-        public MobileServiceClient(string mobileServicesUri, string apiKey)
+        /// <param name="masterKey"></param>
+        public MobileServiceClient(string mobileServicesUri, string apiKey, bool masterKey = false)
         {
             if (mobileServicesUri == null) 
                 throw new ArgumentNullException("mobileServicesUri");
@@ -45,9 +46,13 @@ namespace Heyns.ZumoClient
             _apiKey = apiKey;
 
             _httpClient = new RestClient(mobileServicesUri);
-            _httpClient.AddDefaultHeader("X-ZUMO-APPLICATION", apiKey);
             _httpClient.AddDefaultHeader("Accept", "application/json");
             _httpClient.AddDefaultHeader("Content-Type","application/json");
+            
+            if (masterKey)
+                _httpClient.AddDefaultHeader("X-ZUMO-MASTER", apiKey);
+            else
+                _httpClient.AddDefaultHeader("X-ZUMO-APPLICATION", apiKey);
         }
         
         /// <summary>
