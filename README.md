@@ -2,8 +2,6 @@ Heyns Zumo Client
 ===================================
 #Azure Mobile Services (a.k.a. ZUMO)
 
-[![Build Status](http://ci.deonheyns.com/job/Heyns%20ZumoClient/badge/icon)](/)
-
 Scott Gu says:
 
 "Windows Azure Mobile Services makes it incredibly easy to connect a scalable cloud backend to your client and mobile applications.  
@@ -64,6 +62,9 @@ twitter: [@DeonHeyns](https://twitter.com/deonheyns)
 website: [deonheyns.com](http://deonheyns.com/contact)
 
 GitHub: [GitHub Profile](https://github.com/deonheyns)
+
+#Contributors
+[@MischaBoender](https://github.com/MischaBoender)
 
 #Open source projects used:
 
