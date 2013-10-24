@@ -25,7 +25,6 @@ namespace Heyns.ZumoClient
     {
 
         private readonly string _mobileServicesUri;
-        private readonly string _apiKey;
         private IRestClient _httpClient;
         private const string LoginUrl = "login?mode=authenticationToken";
         private bool _disposed;
@@ -43,16 +42,12 @@ namespace Heyns.ZumoClient
                 throw new ArgumentNullException("apiKey");
 
             _mobileServicesUri = mobileServicesUri;
-            _apiKey = apiKey;
 
             _httpClient = new RestClient(mobileServicesUri);
             _httpClient.AddDefaultHeader("Accept", "application/json");
             _httpClient.AddDefaultHeader("Content-Type","application/json");
-            
-            if (masterKey)
-                _httpClient.AddDefaultHeader("X-ZUMO-MASTER", apiKey);
-            else
-                _httpClient.AddDefaultHeader("X-ZUMO-APPLICATION", apiKey);
+
+            _httpClient.AddDefaultHeader(masterKey ? "X-ZUMO-MASTER" : "X-ZUMO-APPLICATION", apiKey);
         }
         
         /// <summary>
@@ -99,6 +94,12 @@ namespace Heyns.ZumoClient
             where T : new()
         {
             return new TableQuery<T>(_httpClient);
+        }
+
+        // Dispose is not called invoke the Destructor
+        ~MobileServiceClient()
+        {
+            Dispose();
         }
 
         public void Dispose()
