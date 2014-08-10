@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Heyns.zumoclient by DeonHeyns</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Heyns.zumoclient</h1>
+        <p>Wrapper around Azure Mobile Services that can be used in any .NET 4 client</p>
+
+        <p class="view"><a href="https://github.com/DeonHeyns/Heyns.ZumoClient">View the Project on GitHub <small>DeonHeyns/Heyns.ZumoClient</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/DeonHeyns/Heyns.ZumoClient/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/DeonHeyns/Heyns.ZumoClient/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/DeonHeyns/Heyns.ZumoClient">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="heyns-zumo-client" class="anchor" href="#heyns-zumo-client"><span class="octicon octicon-link"></span></a>Heyns Zumo Client</h1>
+
+<h1>
+<a name="azure-mobile-services-aka-zumo" class="anchor" href="#azure-mobile-services-aka-zumo"><span class="octicon octicon-link"></span></a>Azure Mobile Services (a.k.a. ZUMO)</h1>
+
+<p>Scott Gu says:</p>
+
+<p>"Windows Azure Mobile Services makes it incredibly easy to connect a scalable cloud backend to your client and mobile applications.<br>
+It allows you to easily store structured data in the cloud that can span both devices and users, integrate it with user authentication, as well as send out updates to clients via push notifications."</p>
+
+<p>However at the moment there is only a SDK for Windows 8 applications. This SDK just wraps the REST services exposed by Azure Mobile Services.
+This also means that at the moment there is no SDK for .NET 4. So I created this library to fill that gap. It's pre-alpha so use it and change it as you see fit (fork it go mad).</p>
+
+<p>Be kind and send pull requests for any changes you make (if you don't a penguin will die somewhere in the world).</p>
+
+<h1>
+<a name="take-note" class="anchor" href="#take-note"><span class="octicon octicon-link"></span></a>Take note:</h1>
+
+<p>There are some things that might seem perculiar and if you find a better way to implement something please be my guest. </p>
+
+<h1>
+<a name="how-to-use-it" class="anchor" href="#how-to-use-it"><span class="octicon octicon-link"></span></a>How to use it</h1>
+
+<ul>
+<li>Clone the repository or download the source from GitHub. Or just install from <a href="https://nuget.org/packages/Heyns.ZumoClient">NuGet</a>.</li>
+</ul><h2>
+<a name="crud-operations" class="anchor" href="#crud-operations"><span class="octicon octicon-link"></span></a>Crud operations</h2>
+
+<pre><code>public class Awesomeness
+{
+    var client = new Heyns.ZumoClient.MobileServiceClient("https://[YOURS].azure-mobile.net/", "AzureApiKey");
+    var table = client.GetTable&lt;Item&gt;();
+
+    // get all 
+    var items = table.Get();
+
+    // get by id
+    var item = table.Get(1);
+
+    // insert
+    var item = table.Insert(new Item { Text = "Random Text"});
+
+    // update
+    var item = table.Update(1, new Item { Text = "More Random Text"});
+
+    // delete
+    table.Delete(1);
+}
+</code></pre>
+
+<h2>
+<a name="querying-your-table" class="anchor" href="#querying-your-table"><span class="octicon octicon-link"></span></a>Querying your table</h2>
+
+<pre><code>public class Awesomeness
+{
+    var client = new Heyns.ZumoClient.MobileServiceClient("https://[YOURS].azure-mobile.net/", "AzureApiKey");
+    var table = client.QueryTable&lt;Item&gt;();
+
+    var items = table
+                    .Filter("text eq 'random'")
+                    .Top(10)
+                    .Skip(20)
+                    .OrderBy("id")
+                    .Select("text");
+}
+</code></pre>
+
+<h1>
+<a name="how-to-get-hold-of-me" class="anchor" href="#how-to-get-hold-of-me"><span class="octicon octicon-link"></span></a>How to get hold of me</h1>
+
+<p>twitter: <a href="https://twitter.com/deonheyns">@DeonHeyns</a></p>
+
+<p>website: <a href="http://deonheyns.com/contact">deonheyns.com</a></p>
+
+<p>GitHub: <a href="https://github.com/deonheyns">GitHub Profile</a></p>
+
+<h1>
+<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h1>
+
+<p><a href="https://github.com/MischaBoender">@MischaBoender</a></p>
+
+<h1>
+<a name="open-source-projects-used" class="anchor" href="#open-source-projects-used"><span class="octicon octicon-link"></span></a>Open source projects used:</h1>
+
+<p>RestSharp: <a href="https://github.com/restsharp">https://github.com/restsharp</a></p>
+
+<p>Json.Net: <a href="http://json.codeplex.com/">http://json.codeplex.com/</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/DeonHeyns">DeonHeyns</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
